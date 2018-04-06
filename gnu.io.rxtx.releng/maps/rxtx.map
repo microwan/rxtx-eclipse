@@ -1,0 +1,9 @@
+feature@gnu.io.rxtx=v20071016,:pserver:mober@talia:/export1/data/cvsroot/mober,,rxtx/gnu.io.rxtx-feature
+feature@gnu.io.rxtx.sdk=v20071016,:pserver:mober@talia:/export1/data/cvsroot/mober,,rxtx/gnu.io.rxtx.sdk-feature
+plugin@gnu.io.rxtx=v20071016,:pserver:mober@talia:/export1/data/cvsroot/mober,,rxtx/gnu.io.rxtx
+plugin@gnu.io.rxtx.source=v20071016,:pserver:mober@talia:/export1/data/cvsroot/mober,,rxtx/gnu.io.rxtx/source-bundle
+fragment@gnu.io.rxtx.linux.x86=v20071015,:pserver:mober@talia:/export1/data/cvsroot/mober,,rxtx/gnu.io.rxtx.linux.x86
+fragment@gnu.io.rxtx.linux.x86_64=v20071015,:pserver:mober@talia:/export1/data/cvsroot/mober,,rxtx/gnu.io.rxtx.linux.x86_64
+fragment@gnu.io.rxtx.macosx=v20071015,:pserver:mober@talia:/export1/data/cvsroot/mober,,rxtx/gnu.io.rxtx.macosx
+fragment@gnu.io.rxtx.solaris.sparc=v20071015,:pserver:mober@talia:/export1/data/cvsroot/mober,,rxtx/gnu.io.rxtx.solaris.sparc
+fragment@gnu.io.rxtx.win32.x86=v20071015,:pserver:mober@talia:/export1/data/cvsroot/mober,,rxtx/gnu.io.rxtx.win32.x86

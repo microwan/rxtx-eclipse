@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/gnu.io.rxtx_2.1.7.200704042019.jar" id="gnu.io.rxtx" version="2.1.7.200704042019" os="linux,macosx,solaris,win32" arch="ppc,sparc,x86,x86_64">
+      <category name="RXTX 2.1-7r2"/>
+   </feature>
+   <feature url="features/gnu.io.rxtx_2.1.7.3_200704181339.jar" id="gnu.io.rxtx" version="2.1.7.3_200704181339" os="linux,macosx,solaris,win32" arch="ppc,sparc,x86,x86_64">
+      <category name="RXTX 2.1-7r3"/>
+   </feature>
+   <feature url="features/gnu.io.rxtx.sdk_2.1.7.3_200704181339.jar" id="gnu.io.rxtx.sdk" version="2.1.7.3_200704181339" os="linux,macosx,solaris,win32" arch="ppc,sparc,x86,x86_64">
+      <category name="RXTX 2.1-7r3"/>
+   </feature>
+   <category-def name="RXTX 2.1-7r2" label="RXTX 2.1-7r2">
+      <description>
+         RXTX 2.1-7r2 as available from www.rxtx.org
+      </description>
+   </category-def>
+   <category-def name="RXTX 2.1-7r3" label="RXTX 2.1-7r3">
+      <description>
+         RXTX 2.1-7r2 plus disable-version-output (RXTXCommDriver v1.16.2.57), disable-lockfiles, sparc-sun-solaris2.7 support
+      </description>
+   </category-def>
+</site>

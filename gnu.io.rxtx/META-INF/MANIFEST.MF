@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: gnu.io.rxtx
+Bundle-Version: 2.1.7.4_qualifier
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: gnu.io
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

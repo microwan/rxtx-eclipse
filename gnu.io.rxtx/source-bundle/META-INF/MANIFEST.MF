@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
+Bundle-SymbolicName: gnu.io.rxtx.source
+Bundle-Version: 2.1.7.4_qualifier
+

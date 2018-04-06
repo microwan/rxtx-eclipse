@@ -1,0 +1,218 @@
+<project default="main">
+
+	<!--
+		Steps
+		
+		1.  Create Eclipse SDK source drops.
+		2.  Build master feature which includes all features and plug-ins in eclipse and equinox projects, with exception of tests.
+		3.  Sign master zip, build root file drops and SDK tests in parallel.
+		4.  Repackage signed master.zip into eclipse and equinox distributables.  Start JUnit and performance tests as soon as JUnit test plug-ins
+			are packaged.
+		5.  Post drops to eclipse and equinox download areas.
+	
+	 	Ant properties available at runtime: 
+	
+	 - eclipse.pdebuild.scripts: the org.eclipse.eclipse.pdebuild.scripts folder
+	 - eclipse.pdebuild.home: the root folder of pde build
+	 - eclipse.pdebuild.templates: the  templates folder
+
+	-->
+
+	<!--build monitoring information:  e-mail, smtp server, build label-->
+	<property file="monitor.properties"/>
+
+	<!--location of PDE Build configuration files for builder and packager-->
+	<property name="eclipse.build.configs" value="${basedir}/../gnu.io.rxtx.releng/configs" />
+
+	<property name="base.builder" value="${basedir}/../org.eclipse.releng.basebuilder" />
+	<property name="equinox.launcher.jar" value="${base.builder}/plugins/org.eclipse.equinox.launcher.jar" />
+
+	<!--location of properties file containing last tag used for integration build-->
+	<property name="mapTag.properties" value="/home/users/releng/buildTools/eclipse33/mapTag.properties"/>
+
+	<!--location of properties file containing last performance reference test information-->
+	<property name="ref.properties" value="/home/users/releng/buildTools/eclipse.perf/ref33.properties"/>
+	
+	<!--location of test update site-->
+	<property file="${ref.properties}"/>
+
+	<!--default buildDirectory-->
+	<property name="buildDirectory" value="${basedir}/../rxtx.build" />
+
+	<!--default location for build output, parent to ${buildLabel}-->
+	<property name="postingDirectory" value="${buildDirectory}" />
+
+	<target name="main" depends="init">
+		<antcall target="buildMasterFeature" />
+		<parallel failonany="true">
+			<sequential>
+				<!--
+				<antcall target="signMasterFeature" />
+				-->
+				<antcall target="packMasterFeature" />
+				<antcall target="unpackUpdateJarsForPackaging" />
+				<antcall target="buildUpdateSite" />
+			</sequential>
+		</parallel>
+		<parallel failonany="true">
+			<sequential>
+				<antcall target="packageRXTXDistributables" />
+				<antcall target="publishRXTX" />
+			</sequential>
+			<antcall target="testRXTX" />
+		</parallel>
+		<!--
+		<antcall target="publishRSS"/>
+		--> 
+	</target>
+
+	<target name="init">
+		<ant antfile="build.xml" target="init" />
+		<property file="${buildDirectory}/label.properties" />
+		<condition property="fetchTag" value="HEAD">
+			<equals arg1="${buildType}" arg2="N" />
+		</condition>
+		<condition property="forceContextQualifier" value="${buildId}">
+			<equals arg1="${buildType}" arg2="N" />
+		</condition>
+		<!--compiler args-->
+		<property name="compilerArg" value="-inlineJSR -enableJavadoc -encoding ISO-8859-1 -warn:-discouraged,forbidden" />
+		<property name="javacSource" value="1.4" />
+		<property name="javacTarget" value="1.4" />
+		<property name="javacDebugInfo" value="true" />
+		<property name="javacFailOnError" value="true" />
+		<property name="javacVerbose" value="false" />
+		<property name="logExtension" value=".xml" />
+		<!--this property required as of Eclipse 3.0 stream builds > 20031126 -->
+		<property name="buildingOSGi" value="true" />
+		<!--zip args-->
+		<property name="zipargs" value="-y -qq" />
+		<!--unzip args-->
+		<property name="unzipArgs" value="-qq" />
+	</target>
+	
+	<target name="buildMasterFeature">
+		<ant antfile="build.xml" dir="${basedir}">
+			<property name="component" value="${basedir}/rxtx" />
+		</ant>
+	</target>
+
+	<target name="buildUpdateSite" if="updateSite">
+		<!--
+		<ant antfile="${eclipse.build.configs}/../helper.xml" target="buildUpdateJars" />
+		-->
+	</target>
+
+	<target name="packMasterFeature" unless="skipPack">
+		<!-- TODO replace with master feature value -->
+		<property name="archiveName" value="RXTX-SDK-${buildId}.zip" />
+		<property name="packtmp" value="${buildDirectory}/packtmp" />
+		<mkdir dir="${packtmp}" />	
+
+		<move file="${postingDirectory}/${buildLabel}/${archiveName}" tofile="${packtmp}/${archiveName}"/>
+		<!--<move file="${buildDirectory}/${buildLabel}/${archiveName}" tofile="${packtmp}/${archiveName}"/>-->
+		
+		
+	   <!-- update location of jvm arguments --> 
+        <replace file="${eclipse.build.configs}/../../gnu.io.rxtx.releng/extras/pack200" token="@pack200@" value="${java15-home}/jre/bin/pack200"/>
+		<chmod file="${eclipse.build.configs}/../../gnu.io.rxtx.releng/extras/pack200" perm="755"/>
+		
+	   <!--pack200-->
+	     <java jar="${equinox.launcher.jar}"
+	           fork="true"
+	           jvm="${java15-home}/bin/java"
+	           failonerror="true"
+	           maxmemory="128m"
+			   dir="${buildDirectory}"
+			   logerror="true">
+			 <!-- <jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${eclipse.build.configs}/../../gnu.io.rxtx.releng/extras"/> -->
+	         <arg line="-application org.eclipse.update.core.siteOptimizer"/>
+	         <arg line="-jarProcessor -verbose -processAll -outputDir ${buildLabel} -pack -repack ${packtmp}/${archiveName}"/>
+	       </java>
+
+	<!--	<delete dir="${packtmp}" /> -->
+	</target>
+
+	<target name="testRXTX">
+		<!-- this is a placeholder for unit tests -->
+	</target>
+
+	<target name="publishRXTX">
+		<!--
+		<ant antfile="${equinox.build.configs}/../helper.xml" target="publish" />
+		-->
+		<copy file="${buildDirectory}/${buildLabel}/RXTX-SDK-${buildId}.zip" tofile="${postingDirectory}/${buildLabel}/RXTX-SDK-${buildId}.zip" />
+		<copy file="${buildDirectory}/${buildLabel}/RXTX-SDK-${buildId}.bak.zip" tofile="${postingDirectory}/${buildLabel}/RXTX-Updatesite-${buildId}.zip" />
+	</target>
+
+	<target name="unpackUpdateJarsForPackaging">
+		<property name="tmpsite" value="${buildDirectory}/tmpsite" />
+		<mkdir dir="${tmpsite}/new/eclipse/features" />
+		<mkdir dir="${tmpsite}/new/eclipse/plugins" />
+		<exec executable="unzip" dir="${buildDirectory}/${buildLabel}">
+			<arg line="-q RXTX-SDK-${buildId}.zip -d ${tmpsite}" />
+		</exec>
+		<unpackUpdateJars site="${tmpsite}/eclipse" output="${tmpsite}/new/eclipse"/>
+		<move file="${buildDirectory}/${buildLabel}/RXTX-SDK-${buildId}.zip" tofile="${buildDirectory}/${buildLabel}/RXTX-SDK-${buildId}.bak.zip" />
+		<exec executable="zip" dir="${tmpsite}/new">
+			<arg line="-q ${buildDirectory}/${buildLabel}/RXTX-SDK-${buildId}.zip -r eclipse" />
+		</exec>
+	</target>
+		
+	<target name="packageRXTXDistributables">
+		<!--
+		<replace file="packaging.map" token="@buildId@" value="${buildId}"/>
+		<antcall target="package">
+			<param name="packagingInfo" value="${eclipse.build.configs}/sdk/packager" />
+		</antcall>
+		-->
+	</target>
+
+	<!--
+	<target name="package">
+		<ant antfile="package.xml" dir="${eclipse.pdebuild.scripts}">
+			<property name="packagingInfo" value="${packagingInfo}" />
+			<property name="assemblyTempDir" value="${packagingInfo}/jartmp" />
+		</ant>
+	</target>
+	-->
+
+	<target name="publishRSS" unless="skip.feed">
+    	<property name="rssproperties" value="feedPublish.eclipse.properties"/> 
+   	    <property name="buildrssproperties" value="${postingDirectory}/${buildLabel}/${rssproperties}"/> 
+    	<copy file="${eclipse.build.configs}/../publishingFiles/templateFiles/${rssproperties}" tofile="${buildrssproperties}" failonerror="true"/>			
+		<condition property="updateManagerURL" value="http://rxtx.qbang.org/eclipse">
+				<equals arg1="${buildType}" arg2="I"/>
+		</condition>
+	    <replace file="${buildrssproperties}" token="@updateManagerURL@" value="updateManagerURL=${updateManagerURL}"/> 
+	    <replace file="${buildrssproperties}" token="@buildid@" value="${buildId}"/>
+		<replace file="${buildrssproperties}" token="@buildType@" value="${buildType}"/>
+		<condition property="feedFileValue" value="${base.builder}/plugins/org.eclipse.build.tools/data/builds-eclipse.xml">
+			<equals arg1="${test}" arg2="true"/>
+		</condition>
+		<condition property="feedFileValue" value="/builds/transfer/files/master/downloads/builds-eclipse-3.3.xml">
+			<equals arg1="${buildType}" arg2="I"/>
+		</condition>
+		<condition property="feedFileValue" value="/builds/transfer/files/master/downloads/builds-eclipse-N.xml">
+				<equals arg1="${buildType}" arg2="N"/>
+		</condition>
+	    <replace file="${buildrssproperties}" token="@file@" value="file=${feedFileValue}"/>	
+		<condition property="feedURL" value="http://download.eclipse.org/eclipse/downloads/builds-eclipse-test.xml">
+					<equals arg1="${test}" arg2="true"/>
+				</condition>
+		<condition property="feedURL" value="http://download.eclipse.org/eclipse/downloads/builds-eclipse-3.3.xml">
+				<equals arg1="${buildType}" arg2="I"/>
+		</condition>
+		<condition property="feedURL" value="http://download.eclipse.org/eclipse/downloads/builds-eclipse-N.xml">
+				<equals arg1="${buildType}" arg2="N"/>
+		</condition>
+	    <replace file="${buildrssproperties}" token="@feedURL@" value="feedURL=${feedURL}"/>	
+		<condition property="signStatus" value="SIGNED">
+			<equals arg1="${sign}" arg2="true"/>
+		</condition>
+		<property name="signStatus" value="UNSIGNED"/>
+	    <replace file="${buildrssproperties}" token="@jarSigningStatus@" value="jarSigningStatus=${signStatus}"/>
+		<copy file="${buildrssproperties}" tofile="${base.builder}/plugins/org.eclipse.build.tools/properties/${rssproperties}" overwrite="true" failonerror="true"/>	
+	</target>	
+	
+</project>
