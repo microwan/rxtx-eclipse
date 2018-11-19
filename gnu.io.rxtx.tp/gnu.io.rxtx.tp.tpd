@@ -1,0 +1,104 @@
+target "GnuIoRxTxTP_MultiOS"
+
+with allEnvironments
+
+location "http://download.eclipse.org/releases/neon/"
+{
+	org.eclipse.core.runtime.feature.feature.group
+	org.eclipse.draw2d.feature.group
+	org.eclipse.e4.rcp.feature.group
+	org.eclipse.e4.ui.css.swt.theme
+	org.eclipse.e4.ui.model.workbench
+	org.eclipse.e4.ui.workbench
+	org.eclipse.ecf.core.feature.feature.group
+	org.eclipse.ecf.core.ssl.feature.feature.group
+	org.eclipse.ecf.filetransfer.feature.feature.group
+	org.eclipse.ecf.filetransfer.httpclient4.feature.feature.group
+	org.eclipse.ecf.filetransfer.httpclient4.ssl.feature.feature.group
+	org.eclipse.ecf.filetransfer.ssl.feature.feature.group
+	org.eclipse.egit.core
+	org.eclipse.egit.ui
+	org.eclipse.equinox.app
+	org.eclipse.equinox.compendium.sdk.feature.group
+	org.eclipse.equinox.core.feature.feature.group
+	org.eclipse.equinox.ds
+	org.eclipse.equinox.executable.feature.group
+	org.eclipse.equinox.launcher
+	org.eclipse.equinox.launcher.win32.win32.x86
+	org.eclipse.equinox.p2.core.feature.feature.group
+	org.eclipse.equinox.p2.discovery.feature.feature.group
+	org.eclipse.equinox.p2.extras.feature.feature.group
+	org.eclipse.equinox.p2.rcp.feature.feature.group
+	org.eclipse.equinox.p2.user.ui.feature.group
+	org.eclipse.equinox.p2.ui.sdk
+	org.eclipse.equinox.sdk.feature.group
+	org.eclipse.equinox.server.core.feature.group
+	org.eclipse.equinox.server.jetty.feature.group
+	org.eclipse.equinox.server.p2.feature.group
+	org.eclipse.equinox.serverside.sdk.feature.group
+	org.eclipse.equinox.simpleconfigurator
+	org.eclipse.help.feature.group
+	org.eclipse.jdt.feature.group
+	org.eclipse.jface.text
+	org.eclipse.jgit
+	org.eclipse.launchbar.core
+	org.eclipse.launchbar.ui
+	org.eclipse.mylyn.bugzilla_feature.feature.group
+	org.eclipse.mylyn.builds.feature.group
+	org.eclipse.mylyn.builds.ui
+	org.eclipse.mylyn.commons.feature.group
+	org.eclipse.mylyn.commons.identity.feature.group
+	org.eclipse.mylyn.commons.net
+	org.eclipse.mylyn.commons.notifications.feature.group
+	org.eclipse.mylyn.commons.repositories.feature.group
+	org.eclipse.mylyn.commons.repositories.http.feature.group
+	org.eclipse.mylyn.commons.ui
+	org.eclipse.mylyn.commons.workbench
+	org.eclipse.mylyn.commons.xmlrpc
+	org.eclipse.mylyn.context.ui
+	org.eclipse.mylyn.context_feature.feature.group
+	org.eclipse.mylyn.discovery.feature.group
+	org.eclipse.mylyn.gerrit.feature.feature.group
+	org.eclipse.mylyn.git.feature.group
+	org.eclipse.mylyn.hudson.feature.group
+	org.eclipse.mylyn.ide_feature.feature.group
+	org.eclipse.mylyn.java_feature.feature.group
+	org.eclipse.mylyn.monitor.feature.group
+	org.eclipse.mylyn.pde_feature.feature.group
+	org.eclipse.mylyn.reviews.feature.feature.group
+	org.eclipse.mylyn.tasks.core
+	org.eclipse.mylyn.tasks.ide.feature.group
+	org.eclipse.mylyn.tasks.ui
+	org.eclipse.mylyn.team.ui
+	org.eclipse.mylyn.team_feature.feature.group
+	org.eclipse.mylyn.versions.feature.group
+	org.eclipse.mylyn.wikitext_feature.feature.group
+	org.eclipse.osgi
+	org.eclipse.pde.feature.group
+	org.eclipse.platform.feature.group
+	org.eclipse.rcp.feature.group
+	org.eclipse.rse.core
+	org.eclipse.rse.subsystems.files.core
+	org.eclipse.rse.ui
+	org.eclipse.rse.services
+	org.eclipse.tools.templates.ui
+	org.eclipse.tools.templates.core
+	org.eclipse.ui
+	org.eclipse.ui.intro.universal
+	org.eclipse.ui.workbench
+	org.eclipse.userstorage
+	org.eclipse.userstorage.ui
+	org.eclipse.wst.xml.ui
+	org.eclipse.xsd.edit.feature.group
+	org.eclipse.xsd.feature.group
+	org.eclipse.swt
+	org.gradle.toolingapi
+	org.eclipse.equinox.p2.discovery.feature.feature.jar
+}
+
+location "http://spc5.drive.cloudforge.com/projects/spc5releases/missing-swt-fragments"
+{
+	org.eclipse.swt.dummyfragments.feature.group
+}
+
+
