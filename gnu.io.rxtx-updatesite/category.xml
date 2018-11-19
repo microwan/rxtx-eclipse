@@ -3,7 +3,7 @@
    <description url="http://rxtx.qbang.org/eclipse">
       This is the RXTX Update Site.
    </description>
-   <feature url="features/gnu.io.rxtx.feature_2.1.7.4_qualifier.jar" id="gnu.io.rxtx.feature" version="2.1.7.4_qualifier">
+   <feature id="gnu.io.rxtx.feature" version="0.0.0">
       <category name="RXTX 2.1-7r4"/>
    </feature>
    <category-def name="RXTX 2.1-7r4" label="RXTX 2.1-7r4">
