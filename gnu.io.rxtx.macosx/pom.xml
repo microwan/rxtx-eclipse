@@ -10,6 +10,6 @@
   </parent>
   <groupId>gnu.io.rxtx.groupid</groupId>
   <artifactId>gnu.io.rxtx.macosx</artifactId>
-  <version>2.1.7.3-SNAPSHOT</version>
+  <version>2.1.8-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>
