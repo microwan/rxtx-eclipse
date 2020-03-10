@@ -21,6 +21,7 @@
 <module>gnu.io.rxtx.solaris.sparc</module>
 <module>gnu.io.rxtx.tp</module>
 <module>gnu.io.rxtx.win32.x86</module>
+<module>gnu.io.rxtx.win32.x86_64</module>
 <module>gnu.io.rxtx-feature</module>
 <module>gnu.io.rxtx-source</module>
 <module>gnu.io.rxtx-updatesite</module>
