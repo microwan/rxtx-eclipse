@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='osgi.bundle' id='gnu.io.rxtx.win32.x86' version='2.1.8.202003101303'>
+    <properties size='5'>
+      <property name='artifact.size' value='58223'/>
+      <property name='download.size' value='58223'/>
+      <property name='maven-groupId' value='gnu.io.rxtx.groupid'/>
+      <property name='maven-artifactId' value='gnu.io.rxtx.win32.x86'/>
+      <property name='maven-version' value='2.1.8-SNAPSHOT'/>
+    </properties>
+  </artifact>
+</artifacts>

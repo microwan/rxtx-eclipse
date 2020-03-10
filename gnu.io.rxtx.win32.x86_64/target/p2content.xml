@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='1'>
+  <unit id='gnu.io.rxtx.win32.x86' version='2.1.8.202003101303' singleton='false'>
+    <update id='gnu.io.rxtx.win32.x86' range='[0.0.0,2.1.8.202003101303)' severity='0'/>
+    <properties size='8'>
+      <property name='df_LT.fragmentName' value='RXTX for Windows'/>
+      <property name='df_LT.providerName' value='RXTX.org'/>
+      <property name='org.eclipse.equinox.p2.name' value='%fragmentName'/>
+      <property name='org.eclipse.equinox.p2.provider' value='%providerName'/>
+      <property name='org.eclipse.equinox.p2.bundle.localization' value='fragment'/>
+      <property name='maven-groupId' value='gnu.io.rxtx.groupid'/>
+      <property name='maven-artifactId' value='gnu.io.rxtx.win32.x86'/>
+      <property name='maven-version' value='2.1.8-SNAPSHOT'/>
+    </properties>
+    <provides size='6'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='gnu.io.rxtx.win32.x86' version='2.1.8.202003101303'/>
+      <provided namespace='osgi.bundle' name='gnu.io.rxtx.win32.x86' version='2.1.8.202003101303'/>
+      <provided namespace='osgi.identity' name='gnu.io.rxtx.win32.x86' version='2.1.8.202003101303'>
+        <properties size='1'>
+          <property name='type' value='osgi.fragment'/>
+        </properties>
+      </provided>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      <provided namespace='osgi.fragment' name='gnu.io.rxtx' version='2.1.8.202003101303'/>
+      <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+    </provides>
+    <requires size='1'>
+      <required namespace='osgi.bundle' name='gnu.io.rxtx' range='[2.1.7,2.2.0)'/>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='gnu.io.rxtx.win32.x86' version='2.1.8.202003101303'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: gnu.io.rxtx.win32.x86&#xA;Bundle-Version: 2.1.8.202003101303&#xA;Fragment-Host: gnu.io.rxtx;bundle-version=&quot;[2.1.7,2.2.0)&quot;&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>
