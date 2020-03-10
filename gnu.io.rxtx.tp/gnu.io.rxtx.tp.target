@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
-<!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="GnuIoRxTxTP_MultiOS" sequenceNumber="1523008963">
+<!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
+<target name="GnuIoRxTxTP_MultiOS" sequenceNumber="1583845215">
   <locations>
     <location includeMode="slicer" includeAllPlatforms="true" includeSource="false" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.1.203.v20170209-1843"/>
@@ -98,7 +98,7 @@
     </location>
     <location includeMode="slicer" includeAllPlatforms="true" includeSource="false" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.swt.dummyfragments.feature.group" version="1.0.0.v20170228-0512"/>
-      <repository location="http://spc5.drive.cloudforge.com/projects/spc5releases/missing-swt-fragments"/>
+      <repository location="http://mirrors.spc5studio.com/missing-swt-fragments"/>
     </location>
   </locations>
 </target>

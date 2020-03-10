@@ -96,7 +96,7 @@ location "http://download.eclipse.org/releases/neon/"
 	org.eclipse.equinox.p2.discovery.feature.feature.jar
 }
 
-location "http://spc5.drive.cloudforge.com/projects/spc5releases/missing-swt-fragments"
+location "http://mirrors.spc5studio.com/missing-swt-fragments"
 {
 	org.eclipse.swt.dummyfragments.feature.group
 }
