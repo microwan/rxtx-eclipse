@@ -2,7 +2,7 @@
 <feature
       id="gnu.io.rxtx.feature"
       label="%featureName"
-      version="2.1.8.qualifier"
+      version="2.2.0.qualifier"
       provider-name="%providerName"
       plugin="gnu.io.rxtx"
       image="rxtx120.png">

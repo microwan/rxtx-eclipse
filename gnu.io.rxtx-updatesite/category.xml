@@ -4,11 +4,7 @@
       This is the RXTX Update Site.
    </description>
    <feature id="gnu.io.rxtx.feature" version="0.0.0">
-      <category name="RXTX 2.1-7r4"/>
+      <category name="RXTX 2.2.0"/>
    </feature>
-   <category-def name="RXTX 2.1-7r4" label="RXTX 2.1-7r4">
-      <description>
-         RXTX 2.1-7r2 plus disable-version-output (RXTXCommDriver v1.16.2.57, RXTX bug 71), fix-deadlock (CommPortIdentifier, RXTX bug 83), disable-lockfiles, sparc-sun-solaris2.7 support (RXTX bug 73)
-      </description>
-   </category-def>
+   <category-def name="RXTX 2.2.0" label="RXTX 2.2.0"/>
 </site>
